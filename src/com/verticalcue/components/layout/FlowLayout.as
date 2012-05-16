@@ -37,6 +37,7 @@ package com.verticalcue.components.layout
 			row.removeChild(child);
 			
 			// Need to implement a row rebuilding function
+			// Currently this will only remove the sprite and leave the space empty
 			
 			return child;
 		}
@@ -103,13 +104,12 @@ package com.verticalcue.components.layout
 			return result;
 		}
 		
-		/**
-		 * @param	child
-		 * @param	row
-		 * @return  Returns the modified row.
-		 */
 		internal function addChildToRow(child:DisplayObject, row:Sprite):Sprite
 		{
+			if (!child || !row) {
+				throw new InvalidParameterError();
+			}
+			
 			child.x = row.width + _hSpacing;
 			row.addChild(child);
 			return row;

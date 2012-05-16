@@ -3,12 +3,12 @@ package com.verticalcue.components.layout
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.events.TimerEvent;
+	import flash.geom.Rectangle;
 	import flash.utils.Dictionary;
 	import flash.utils.Timer;
 	import org.flexunit.Assert;
 	import org.flexunit.async.Async;
 	/**
-	 * ...
 	 * @author John Vrbanac
 	 */
 	public class TestFlowLayout 
@@ -52,7 +52,6 @@ package com.verticalcue.components.layout
 			// Check for unequal storage
 			_comp.width = 100;
 			Assert.assertEquals(100, _comp.width);
-			
 			Assert.assertFalse(_comp.width == _comp.realWidth);
 		}
 		
@@ -93,14 +92,38 @@ package com.verticalcue.components.layout
 			Assert.assertNotNull(_comp.getActiveRow());
 		}
 		
+		[Test]
 		public function testAddChild():void
 		{
+			var s1:Sprite = createNewTestSprite(0x0, new Rectangle(0, 0, 150, 150));
+			var s2:Sprite = createNewTestSprite(0x5051f, new Rectangle(0, 0, 150, 150));
+			var s3:Sprite = createNewTestSprite(0xababab, new Rectangle(0, 0, 150, 150));
+			
+			_comp.width = 300;
+			_comp.addChild(s1);
+			_comp.addChild(s2);
+			Assert.assertEquals(2, _comp.getActiveRow().numChildren);
+			
+			// Checking to make sure addChild creates a new row
+			_comp.addChild(s3);
+			Assert.assertEquals(1, _comp.getActiveRow().numChildren);
 			
 		}
 		
+		[Test]
+		[Ignore]
 		public function testRemoveChild():void
 		{
-			
+			// Need to add test
+		}
+		
+		private function createNewTestSprite(color:uint, size:Rectangle):Sprite
+		{
+			var sp:Sprite = new Sprite();
+			sp.graphics.beginFill(color, 1);
+			sp.graphics.drawRect(size.x, size.y, size.height, size.width);
+			sp.graphics.endFill();
+			return sp;
 		}
 	}
 
