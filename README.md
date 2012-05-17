@@ -7,6 +7,7 @@ A collection of ActionScript 3 based components written by John Vrbanac.
 Available Components
 ------------------------
 	- FlowLayout (only static flow currently supported)
+	- TextLabel (Proof-of-concept stage)
 	
 
 License

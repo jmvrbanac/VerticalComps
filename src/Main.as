@@ -1,5 +1,7 @@
 package 
 {
+	import com.verticalcue.components.label.style.FTEFontStyle;
+	import com.verticalcue.components.label.TextLabel;
 	import com.verticalcue.components.layout.FlowLayout;
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -24,16 +26,21 @@ package
 			
 			var layout:FlowLayout = new FlowLayout();
 			
+			// Putting a couple of colored squares on the screen.
 			var s1:Sprite = createNewTestSprite(0x0, new Rectangle(0, 0, 150, 150));
 			var s2:Sprite = createNewTestSprite(0x5051f, new Rectangle(0, 0, 150, 150));
 			var s3:Sprite = createNewTestSprite(0xab32f, new Rectangle(0, 0, 150, 150));
 			layout.addChild(s1);
 			layout.addChild(s2);
 			layout.addChild(s3);
-			layout.addChild(createNewTestSprite(0xabefa, new Rectangle(0, 0, 150, 150)));
-
 			
-			addChild(layout);			
+			var label:TextLabel = new TextLabel();
+			label.defaultStyle = new FTEFontStyle();
+			label.text = "This is a test\nof the emergency broadcast system";
+			
+			layout.addChild(label);
+			
+			addChild(layout);
 		}
 		
 		private function createNewTestSprite(color:uint, size:Rectangle):Sprite
